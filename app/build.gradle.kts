@@ -49,10 +49,20 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.retrofit.core)
 
+    // retrofit
+    implementation(libs.retrofit.core)
+    // compose
     implementation(libs.androidx.activity.compose)
+    debugImplementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+    // coroutines
     implementation(libs.kotlinx.coroutines.android)
+    // hilt
+    implementation(libs.hilt.android)
+    // navigation
+    implementation(libs.androidx.navigation.compose)
 
     testImplementation(libs.junit)
 
