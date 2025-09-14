@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.prashantrawattask.holdings.presentation.components.PortfolioScreen
 import com.example.prashantrawattask.holdings.presentation.StockHoldingsViewModel
 
 @Composable
@@ -32,7 +33,10 @@ fun TaskAppNavGraph(
             PlaceHolderScreen(screenName = "Orders Screen")
         }
         composable(TaskAppDestinations.Portfolio().route) {
-            PlaceHolderScreen(screenName = "Portfolio Screen")
+            PortfolioScreen(
+                modifier = Modifier.fillMaxSize(),
+                state = viewModel.state
+            )
         }
         composable(TaskAppDestinations.Funds().route) {
             PlaceHolderScreen(screenName = "Funds Screen")

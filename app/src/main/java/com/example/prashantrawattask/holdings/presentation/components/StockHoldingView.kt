@@ -1,4 +1,4 @@
-package com.example.prashantrawattask.holdings.presentation
+package com.example.prashantrawattask.holdings.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,16 +15,16 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.prashantrawattask.common.getFormattedAmounts
+import com.example.prashantrawattask.common.toRupeeString
+import com.example.prashantrawattask.holdings.domain.model.UserHoldingModel
 
 @Composable
 fun StockHoldingView(
     modifier: Modifier = Modifier,
-    name: String,
-    qty: String,
-    ltp: String,
-    pnl: Double
+    holding: UserHoldingModel
 ) {
     Column(
         modifier = modifier
@@ -38,19 +38,19 @@ fun StockHoldingView(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = name,
+                text = holding.symbol,
                 fontWeight = FontWeight.Bold,
                 color = Color.DarkGray
             )
-            LabeledText(label = "LTP: ", value = ltp)
+            LabeledText(label = "LTP: ", value = getFormattedAmounts(holding.lastTradePrice))
         }
         Spacer(modifier = Modifier.height(28.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            LabeledText(label = "NET QTY: ", value = qty)
-            PnLText(value = pnl)
+            LabeledText(label = "NET QTY: ", value = holding.qty.toString())
+            PnLText(value = holding.pnL)
         }
     }
 }
@@ -58,13 +58,17 @@ fun StockHoldingView(
 @Composable
 fun LabeledText(modifier: Modifier = Modifier, label: String, value: String) {
     val pnlText = buildAnnotatedString {
-        withStyle(style = SpanStyle(fontWeight = FontWeight.W400, color = Color.Gray)) {
+        withStyle(style = SpanStyle(
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Normal,
+            color = Color.Gray
+        )) {
             append(label)
         }
         withStyle(
             style = SpanStyle(
                 fontWeight = FontWeight.Normal,
-                color = Color.Gray
+                color = Color.Black
             )
         ) { append(value) }
     }
@@ -79,34 +83,24 @@ fun PnLText(modifier: Modifier = Modifier, value: Double) {
     val isProfit = value > 0
 
     val pnlText = buildAnnotatedString {
-        withStyle(style = SpanStyle(fontWeight = FontWeight.Thin, color = Color.Gray)) {
+        withStyle(style = SpanStyle(
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Normal,
+            color = Color.Gray
+        )) {
             append("P&L: ")
         }
         withStyle(
             style = SpanStyle(
                 fontWeight = FontWeight.Normal,
-                color = if (isProfit) Color.Green else Color.Red
+                color = if (isProfit) Color(0xFF02811E) else Color.Red
             )
         ) {
-            // TODO: move text formatting to different classes
-            if (isProfit) append("₹$value")
-            else append("-₹$value")
+            append(value.toRupeeString())
         }
     }
     Text(
         modifier = modifier,
         text = pnlText
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun StockHoldingViewPreview() {
-    StockHoldingView(
-        modifier = Modifier.fillMaxWidth(),
-        name = "HDFC",
-        qty = "7",
-        ltp = "₹2,497.20",
-        pnl = 1517.46
     )
 }
