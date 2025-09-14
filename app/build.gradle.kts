@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.retrofit.core)
     // compose
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.foundation)
     debugImplementation(libs.androidx.ui.tooling.preview)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
