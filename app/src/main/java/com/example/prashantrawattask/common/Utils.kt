@@ -3,13 +3,13 @@ package com.example.prashantrawattask.common
 import java.text.DecimalFormat
 
 fun getFormattedAmounts(amount: Double): String {
-    val value = 123.4567
-    val df = DecimalFormat("#.##")
-    return "₹${df.format(value)}"
+    val df = DecimalFormat("#,##,##0.##" )
+    return "₹${df.format(amount)}"
 }
 
-fun Double.toRupeeString(): String {
-    val decimalFormat = DecimalFormat("#.##")
-    val absValue = decimalFormat.format(kotlin.math.abs(this)) // absolute value
+fun Double.toRupeeFormat(): String {
+    val pattern = "#,##,##0.##" // Indian grouping
+    val decimalFormat = DecimalFormat(pattern)
+    val absValue = decimalFormat.format(kotlin.math.abs(this))
     return if (this < 0) "-₹$absValue" else "₹$absValue"
 }

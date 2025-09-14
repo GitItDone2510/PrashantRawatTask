@@ -18,7 +18,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.prashantrawattask.common.getFormattedAmounts
-import com.example.prashantrawattask.common.toRupeeString
+import com.example.prashantrawattask.common.toRupeeFormat
 import com.example.prashantrawattask.holdings.domain.model.UserHoldingModel
 
 @Composable
@@ -96,7 +96,7 @@ fun PnLText(modifier: Modifier = Modifier, value: Double) {
                 color = if (isProfit) Color(0xFF02811E) else Color.Red
             )
         ) {
-            append(value.toRupeeString())
+            append(value.toRupeeFormat())
         }
     }
     Text(

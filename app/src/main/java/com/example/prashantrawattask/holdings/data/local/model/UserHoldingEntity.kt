@@ -6,8 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class UserHoldingEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
     @ColumnInfo("avgPrice")
     val avgPrice: Double,
     @ColumnInfo("closePrice")
@@ -16,6 +14,7 @@ data class UserHoldingEntity(
     val lastTradePrice: Double,
     @ColumnInfo("quantity")
     val qty: Int,
+    @PrimaryKey()
     @ColumnInfo("symbol")
     val symbol: String
 )

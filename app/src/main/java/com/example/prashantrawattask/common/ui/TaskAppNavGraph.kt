@@ -2,8 +2,11 @@ package com.example.prashantrawattask.common.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -20,7 +23,7 @@ fun TaskAppNavGraph(
     startDestination: String = TaskAppDestinations.Portfolio().route,
     viewModel: StockHoldingsViewModel
 ) {
-
+    val scrollState = remember { LazyListState() }
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -35,7 +38,8 @@ fun TaskAppNavGraph(
         composable(TaskAppDestinations.Portfolio().route) {
             PortfolioScreen(
                 modifier = Modifier.fillMaxSize(),
-                state = viewModel.state
+                state = viewModel.state,
+                listState = scrollState
             )
         }
         composable(TaskAppDestinations.Funds().route) {

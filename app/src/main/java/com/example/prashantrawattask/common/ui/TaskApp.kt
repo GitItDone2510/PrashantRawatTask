@@ -35,6 +35,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.prashantrawattask.common.ui.theme.TaskTheme
 import com.example.prashantrawattask.holdings.presentation.StockHoldingsViewModel
+import com.example.prashantrawattask.holdings.presentation.components.CollapsiblePnlView
 
 @Composable
 fun TaskApp(viewModel: StockHoldingsViewModel = hiltViewModel()) {
@@ -61,35 +62,39 @@ fun TaskApp(viewModel: StockHoldingsViewModel = hiltViewModel()) {
                 )
             },
             bottomBar = {
-                NavigationBar {
-                    TaskAppDestinations.getAllDestinations().forEachIndexed { index, destination ->
-                        NavigationBarItem(
-                            selected = destination.route == currentRoute,
-                            onClick = {
-                                when (destination.route) {
-                                    WATCHLIST_ROUTE -> navigationActions.navigateToWatchlist()
-                                    ORDERS_ROUTE -> navigationActions.navigateToOrders()
-                                    PORTFOLIO_ROUTE -> navigationActions.navigateToPortfolio()
-                                    FUNDS_ROUTE -> navigationActions.navigateToFunds()
-                                    INVEST_ROUTE -> navigationActions.navigateToInvest()
-                                }
-                            },
-                            icon = {
-                                Icon(
-                                    imageVector = destination.icon,
-                                    contentDescription = destination.label,
+                Column {
+                    CollapsiblePnlView(userHoldingsDetailModel = viewModel.state.userHoldingsDetails)
+                    NavigationBar {
+                        TaskAppDestinations.getAllDestinations().forEachIndexed { index, destination ->
+                            NavigationBarItem(
+                                selected = destination.route == currentRoute,
+                                onClick = {
+                                    when (destination.route) {
+                                        WATCHLIST_ROUTE -> navigationActions.navigateToWatchlist()
+                                        ORDERS_ROUTE -> navigationActions.navigateToOrders()
+                                        PORTFOLIO_ROUTE -> navigationActions.navigateToPortfolio()
+                                        FUNDS_ROUTE -> navigationActions.navigateToFunds()
+                                        INVEST_ROUTE -> navigationActions.navigateToInvest()
+                                    }
+                                },
+                                icon = {
+                                    Icon(
+                                        imageVector = destination.icon,
+                                        contentDescription = destination.label,
+                                    )
+                                },
+                                label = { Text(destination.label) },
+                                colors = NavigationBarItemDefaults.colors(
+                                    selectedIconColor = Color(0xFF012144),
+                                    unselectedIconColor = Color.Gray,
+                                    selectedTextColor = Color(0xFF012144),
+                                    unselectedTextColor = Color.Gray,
+                                    indicatorColor = Color.Transparent
                                 )
-                            },
-                            label = { Text(destination.label) },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = Color(0xFF012144),
-                                unselectedIconColor = Color.Gray,
-                                selectedTextColor = Color(0xFF012144),
-                                unselectedTextColor = Color.Gray,
-                                indicatorColor = Color.Transparent
                             )
-                        )
+                        }
                     }
+
                 }
             }
         ) { contentPadding ->

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -16,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.example.prashantrawattask.holdings.presentation.StockHoldingState
 
 @Composable
-fun PortfolioScreen(modifier: Modifier = Modifier, state: StockHoldingState) {
+fun PortfolioScreen(modifier: Modifier = Modifier, state: StockHoldingState, listState: LazyListState) {
 
     if (state.isLoading) {
         Box(
@@ -26,7 +27,7 @@ fun PortfolioScreen(modifier: Modifier = Modifier, state: StockHoldingState) {
             CircularProgressIndicator()
         }
     } else {
-        LazyColumn(modifier = modifier.padding(bottom = 32.dp)) {
+        LazyColumn(state = listState) {
             itemsIndexed(state.userHoldingsDetails.userHoldings) { index, holding ->
                 StockHoldingView(
                     modifier = Modifier.fillMaxWidth(),
