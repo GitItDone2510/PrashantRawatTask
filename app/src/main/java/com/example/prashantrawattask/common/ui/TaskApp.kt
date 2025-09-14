@@ -30,12 +30,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.prashantrawattask.common.ui.theme.TaskTheme
+import com.example.prashantrawattask.holdings.presentation.StockHoldingsViewModel
 
 @Composable
-fun TaskApp() {
+fun TaskApp(viewModel: StockHoldingsViewModel = hiltViewModel()) {
     TaskTheme {
         val navController = rememberNavController()
         val navigationActions = remember(navController) {
@@ -93,7 +95,8 @@ fun TaskApp() {
         ) { contentPadding ->
             TaskAppNavGraph(
                 modifier = Modifier.padding(contentPadding),
-                navController = navController
+                navController = navController,
+                viewModel = viewModel
             )
         }
     }

@@ -10,12 +10,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.prashantrawattask.holdings.presentation.StockHoldingsViewModel
 
 @Composable
 fun TaskAppNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String = TaskAppDestinations.Portfolio().route,
+    viewModel: StockHoldingsViewModel
 ) {
 
     NavHost(

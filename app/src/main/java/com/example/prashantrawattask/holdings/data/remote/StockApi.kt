@@ -7,5 +7,5 @@ import retrofit2.http.Url
 interface StockApi {
 
     @GET()
-    suspend fun getHoldings(@Url url: String): Data
+    suspend fun getHoldings(@Url url: String): Data?
 }

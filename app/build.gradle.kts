@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.room)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -41,6 +43,11 @@ android {
     room {
         schemaDirectory("$projectDir/schemas")
     }
+    configurations.all {
+        resolutionStrategy {
+            force("com.squareup:javapoet:1.13.0")
+        }
+    }
 }
 
 dependencies {
@@ -56,7 +63,9 @@ dependencies {
 
     // retrofit
     implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson)
     implementation(libs.gson)
+    implementation(libs.okhttp.logging)
     // compose
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.foundation)
@@ -67,11 +76,15 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     // hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
+
     // navigation
     implementation(libs.androidx.navigation.compose)
     // room
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
     testImplementation(libs.androidx.room.testing)
 
     testImplementation(libs.junit)

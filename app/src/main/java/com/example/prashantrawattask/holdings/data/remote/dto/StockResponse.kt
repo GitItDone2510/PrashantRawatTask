@@ -1,5 +1,6 @@
 package com.example.prashantrawattask.holdings.data.remote.dto
 
+import com.example.prashantrawattask.holdings.data.local.model.UserHoldingEntity
 import com.google.gson.annotations.SerializedName
 
 data class StockResponse(
@@ -24,3 +25,13 @@ data class UserHolding(
     @SerializedName("symbol")
     val symbol: String?
 )
+
+fun UserHolding.toEntity(): UserHoldingEntity {
+    return UserHoldingEntity(
+        avgPrice = avgPrice ?: 0.0,
+        closingPrice = closePrice ?: 0.0,
+        lastTradePrice = lastTradePrice ?: 0.0,
+        qty = qty ?: 0,
+        symbol = symbol ?: ""
+    )
+}
