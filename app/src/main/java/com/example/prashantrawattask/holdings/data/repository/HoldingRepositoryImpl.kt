@@ -30,7 +30,7 @@ class HoldingRepositoryImpl @Inject constructor(
         try {
             Log.i("MyTag", "In repo getHoldings()")
             val remoteHoldings =
-                api.getHoldings("https://35dee773a9ec441e9f38d5fc249406ce.api.mockbin.io/")
+                api.getHoldings("https://35dee773a9ec441e9f38d5fc249406ce.api.mockbin.io/")?.data
             val holdingEntities = remoteHoldings?.userHolding?.map { it.toEntity() }.orEmpty()
             stockHoldingDao.clearAndInsertAll(holdingEntities)
         } catch (e: HttpException) {
