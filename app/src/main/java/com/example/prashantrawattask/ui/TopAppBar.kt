@@ -1,6 +1,5 @@
 package com.example.prashantrawattask.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,9 +28,8 @@ fun TopAppBar(
 ) {
     Row(
         modifier = modifier
-            .background(color = Color(0xFF012144))
             .padding(
-                vertical = 12.dp,
+                vertical = 15.dp,
                 horizontal = 10.dp
             ),
         verticalAlignment = Alignment.CenterVertically
