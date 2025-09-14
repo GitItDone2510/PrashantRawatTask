@@ -1,4 +1,4 @@
-package com.example.prashantrawattask.ui
+package com.example.prashantrawattask.common.ui
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.prashantrawattask.ui.theme.TaskTheme
+import com.example.prashantrawattask.common.ui.theme.TaskTheme
 
 @Composable
 fun TopAppBar(

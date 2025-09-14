@@ -1,4 +1,4 @@
-package com.example.prashantrawattask.ui
+package com.example.prashantrawattask.common.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List

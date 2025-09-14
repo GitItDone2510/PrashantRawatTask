@@ -1,4 +1,4 @@
-package com.example.prashantrawattask.ui.theme
+package com.example.prashantrawattask.common.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

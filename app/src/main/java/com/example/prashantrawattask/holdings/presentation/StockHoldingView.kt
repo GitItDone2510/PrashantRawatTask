@@ -1,4 +1,4 @@
-package com.example.prashantrawattask.ui.holdings
+package com.example.prashantrawattask.holdings.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

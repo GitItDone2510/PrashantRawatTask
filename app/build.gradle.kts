@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -10,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.prashantrawattask"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -37,6 +38,9 @@ android {
     buildFeatures {
         compose = true
     }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -52,6 +56,7 @@ dependencies {
 
     // retrofit
     implementation(libs.retrofit.core)
+    implementation(libs.gson)
     // compose
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.foundation)
@@ -64,6 +69,10 @@ dependencies {
     implementation(libs.hilt.android)
     // navigation
     implementation(libs.androidx.navigation.compose)
+    // room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.compiler)
+    testImplementation(libs.androidx.room.testing)
 
     testImplementation(libs.junit)
 
@@ -74,4 +83,5 @@ dependencies {
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(kotlin("test"))
 }
