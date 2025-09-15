@@ -1,6 +1,5 @@
 package com.example.prashantrawattask.holdings.presentation
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -30,14 +29,12 @@ class StockHoldingsViewModel @Inject constructor(
             repository.getHoldings().collect { result ->
                 when(result) {
                     is Resource.Success -> {
-                        Log.i("MyTag", "Success")
                         state = state.copy(
                             isLoading = false,
                             userHoldingsDetails = result.data ?: UserHoldingsDetailModel.empty(),
                         )
                     }
                     is Resource.Error -> {
-                        Log.i("MyTag", "Error")
                         state = state.copy(
                             isLoading = false,
                             error = result.message ?: "An unexpected error occurred"

@@ -14,9 +14,6 @@ interface StockHoldingDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStockHoldings(stockHoldings: List<UserHoldingEntity>)
 
-    @Insert
-    suspend fun insertStockHolding(stockHolding: UserHoldingEntity)
-
     @Query("SELECT * FROM userholdingentity")
     fun getAllHoldings(): Flow<List<UserHoldingEntity>>
 
